@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MisTareas.Views.MainPage"
+             Title="Mis Tareas"
+             
+             xmlns:b ="clr-namespace:Prism.Behaviors;assembly=Prism.Forms">
+
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <ListView
+		            HasUnevenRows="true"
+		            IsPullToRefreshEnabled="true"
+		            CachingStrategy="RecycleElement"
+		            ItemsSource="{ Binding LstTareas }"
+                    SelectedItem="{ Binding TareaSeleccionada, Mode=TwoWay }">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        
+                        <StackLayout Orientation="Horizontal"
+					                    Padding="0,8,0,0">
+
+                            <Label Text="{ Binding Description }"
+                                FontSize="16"
+						        LineBreakMode="WordWrap"
+						        VerticalOptions="FillAndExpand" />
+
+                            <Label IsVisible="{ Binding Complete, Mode=OneWay }"
+                                Text="Completada"
+                                FontSize="17"
+                                TextColor="DarkBlue"
+						        LineBreakMode="WordWrap"
+						        VerticalOptions="FillAndExpand" />
+                        </StackLayout>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.Behaviors>
+                <b:EventToCommandBehavior EventName="ItemTapped"
+                                                  Command="{Binding DetailTaskCommand}"
+                                                  />
+            </ListView.Behaviors>
+
+        </ListView>
+
+
+        <Button Text="Agregar Tarea" Command="{Binding AddTaskCommand}"></Button>
+    </StackLayout>
+
+
+
+
+</ContentPage>

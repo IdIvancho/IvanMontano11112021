@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MisTareas.Views.DetailTaskPage"
+             Title="{Binding Title}">
+    
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label Text="Descripcion de la Actividad"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{ Binding TareaActual.Description, Mode=TwoWay}"
+                FontSize="20" FontAttributes="Bold"
+                   WidthRequest="400"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+
+            <Button Text="Completar" Command="{Binding CompleteTaskCommand}"></Button>
+            <Button Text="Eliminar" Command="{Binding DeleteTaskCommand}"></Button>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
